@@ -1,44 +1,42 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nervensystem Klassifikation / 신경계 분류</title>
+    <title>Nervous System Overview</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        /* Custom styles for the diagram specific elements if needed,
+           but inheriting from style.css for base styles */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-family);
         }
-        
+
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
         }
-        
+
         h1 {
             text-align: center;
             color: white;
             margin-bottom: 30px;
             font-size: 2rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
-        
+
         .diagram-section {
             background: white;
             border-radius: 20px;
             padding: 30px;
             margin-bottom: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
-        
+
         .diagram-title {
             text-align: center;
             font-size: 1.5rem;
@@ -46,21 +44,21 @@
             margin-bottom: 10px;
             font-weight: bold;
         }
-        
+
         .diagram-subtitle {
             text-align: center;
             font-size: 1rem;
             color: #666;
             margin-bottom: 30px;
         }
-        
+
         /* Tree Structure Styles */
         .tree {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        
+
         .node {
             padding: 12px 20px;
             border-radius: 10px;
@@ -69,74 +67,74 @@
             font-size: 0.9rem;
             position: relative;
             min-width: 120px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
-        
+
         .node-german {
             font-size: 0.85rem;
             margin-bottom: 3px;
         }
-        
+
         .node-korean {
             font-size: 0.75rem;
             opacity: 0.9;
         }
-        
+
         .node-english {
             font-size: 0.65rem;
             opacity: 0.7;
             font-style: italic;
         }
-        
+
         .root {
             background: linear-gradient(135deg, #2c3e50, #3498db);
             color: white;
         }
-        
+
         .level1-left {
             background: linear-gradient(135deg, #27ae60, #2ecc71);
             color: white;
         }
-        
+
         .level1-right {
             background: linear-gradient(135deg, #e67e22, #f39c12);
             color: white;
         }
-        
+
         .level2-green {
             background: linear-gradient(135deg, #1abc9c, #16a085);
             color: white;
         }
-        
+
         .level2-blue {
             background: linear-gradient(135deg, #3498db, #2980b9);
             color: white;
         }
-        
+
         .level2-orange {
             background: linear-gradient(135deg, #e74c3c, #c0392b);
             color: white;
         }
-        
+
         .level2-purple {
             background: linear-gradient(135deg, #9b59b6, #8e44ad);
             color: white;
         }
-        
+
         .level3 {
             background: linear-gradient(135deg, #34495e, #2c3e50);
             color: white;
             font-size: 0.8rem;
             padding: 8px 15px;
         }
-        
+
         .level4 {
             background: linear-gradient(135deg, #95a5a6, #7f8c8d);
             color: white;
             font-size: 0.75rem;
             padding: 6px 12px;
         }
-        
+
         .children {
             display: flex;
             gap: 20px;
@@ -144,26 +142,26 @@
             flex-wrap: wrap;
             justify-content: center;
         }
-        
+
         .branch {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        
+
         /* Connector Lines */
         .connector {
             width: 2px;
             height: 20px;
             background: #bdc3c7;
         }
-        
+
         .horizontal-line {
             height: 2px;
             background: #bdc3c7;
             position: relative;
         }
-        
+
         /* Two Column Layout for Textbook Diagram */
         .two-column {
             display: flex;
@@ -171,13 +169,13 @@
             justify-content: center;
             flex-wrap: wrap;
         }
-        
+
         .column {
             flex: 1;
             min-width: 300px;
             max-width: 500px;
         }
-        
+
         .column-title {
             text-align: center;
             padding: 15px;
@@ -185,17 +183,17 @@
             margin-bottom: 20px;
             font-weight: bold;
         }
-        
+
         .topographic {
             background: linear-gradient(135deg, #3498db, #2980b9);
             color: white;
         }
-        
+
         .functional {
             background: linear-gradient(135deg, #e67e22, #d35400);
             color: white;
         }
-        
+
         /* Legend */
         .legend {
             margin-top: 30px;
@@ -203,27 +201,27 @@
             background: #f8f9fa;
             border-radius: 10px;
         }
-        
+
         .legend-title {
             font-weight: bold;
             margin-bottom: 15px;
             color: #333;
         }
-        
+
         .legend-item {
             display: flex;
             align-items: center;
             margin-bottom: 8px;
             font-size: 0.85rem;
         }
-        
+
         .legend-color {
             width: 20px;
             height: 20px;
             border-radius: 5px;
             margin-right: 10px;
         }
-        
+
         /* Key Points */
         .key-points {
             margin-top: 30px;
@@ -232,27 +230,27 @@
             border-radius: 10px;
             border-left: 5px solid #ffc107;
         }
-        
+
         .key-points h3 {
             color: #856404;
             margin-bottom: 15px;
         }
-        
+
         .key-points ul {
             list-style: none;
             padding: 0;
         }
-        
+
         .key-points li {
             padding: 8px 0;
             border-bottom: 1px dashed #e0c36a;
             font-size: 0.9rem;
         }
-        
+
         .key-points li:last-child {
             border-bottom: none;
         }
-        
+
         .highlight {
             background: #fff;
             padding: 2px 6px;
@@ -266,11 +264,11 @@
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .two-column {
                 flex-direction: column;
             }
-            
+
             .node {
                 min-width: 100px;
                 font-size: 0.8rem;
@@ -278,15 +276,17 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Klassifikation des Nervensystems / 신경계 분류 체계</h1>
-        
+
         <!-- Diagram 1: Medically Accurate Comprehensive -->
         <div class="diagram-section">
             <div class="diagram-title">1. 의학적으로 정확한 종합 다이어그램</div>
-            <div class="diagram-subtitle">Medizinisch korrekte Gesamtübersicht / Comprehensive Medical Classification</div>
-            
+            <div class="diagram-subtitle">Medizinisch korrekte Gesamtübersicht / Comprehensive Medical Classification
+            </div>
+
             <div class="tree">
                 <!-- Root -->
                 <div class="node root">
@@ -294,9 +294,9 @@
                     <div class="node-korean">신경계</div>
                     <div class="node-english">Nervous System</div>
                 </div>
-                
+
                 <div class="connector"></div>
-                
+
                 <!-- Two Classification Methods -->
                 <div class="two-column">
                     <!-- Topographic Classification -->
@@ -305,7 +305,7 @@
                             Topografische Einteilung<br>
                             <span style="font-size: 0.8rem; font-weight: normal;">위치적 분류 (Structural)</span>
                         </div>
-                        
+
                         <div class="tree">
                             <div class="children">
                                 <!-- ZNS -->
@@ -327,7 +327,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <!-- PNS -->
                                 <div class="branch">
                                     <div class="node level1-right">
@@ -352,14 +352,14 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Functional Classification -->
                     <div class="column">
                         <div class="column-title functional">
                             Funktionelle Einteilung<br>
                             <span style="font-size: 0.8rem; font-weight: normal;">기능적 분류 (Functional)</span>
                         </div>
-                        
+
                         <div class="tree">
                             <div class="children">
                                 <!-- Somatisches NS -->
@@ -383,7 +383,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <!-- Vegetatives NS -->
                                 <div class="branch">
                                     <div class="node level2-purple">
@@ -415,7 +415,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="key-points">
                 <h3>핵심 포인트 (Key Points)</h3>
                 <ul>
@@ -426,21 +426,21 @@
                 </ul>
             </div>
         </div>
-        
+
         <!-- Diagram 2: Based on Textbook -->
         <div class="diagram-section">
             <div class="diagram-title">2. 교재 기반 다이어그램</div>
             <div class="diagram-subtitle">Basierend auf dem Lehrbuch "Neuroanatomy Basic" / Based on your textbook</div>
-            
+
             <div class="tree">
                 <!-- Root -->
                 <div class="node root">
                     <div class="node-german">Das Nervensystem</div>
                     <div class="node-korean">신경계</div>
                 </div>
-                
+
                 <div class="connector"></div>
-                
+
                 <div class="children" style="gap: 60px;">
                     <!-- Topographic -->
                     <div class="branch">
@@ -488,7 +488,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Functional -->
                     <div class="branch">
                         <div class="node" style="background: linear-gradient(135deg, #2c3e50, #34495e); color: white;">
@@ -553,25 +553,29 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="key-points">
                 <h3>교재에서 강조하는 핵심 내용</h3>
                 <ul>
                     <li><span class="highlight">"Der Funktion nach"</span> = 기능에 따른 분류 → Somatisch vs Vegetativ</li>
-                    <li><span class="highlight">"Nach topografischen Gesichtspunkten"</span> = 위치에 따른 분류 → ZNS vs PNS</li>
-                    <li><span class="highlight">"Beide Systeme arbeiten nicht isoliert voneinander"</span> = 두 시스템은 서로 고립되어 작동하지 않음</li>
+                    <li><span class="highlight">"Nach topografischen Gesichtspunkten"</span> = 위치에 따른 분류 → ZNS vs PNS
+                    </li>
+                    <li><span class="highlight">"Beide Systeme arbeiten nicht isoliert voneinander"</span> = 두 시스템은 서로
+                        고립되어 작동하지 않음</li>
                     <li>ZNS = <span class="highlight">Steuerzentrale</span> (조절 중추)</li>
-                    <li>PNS = <span class="highlight">Verkabelung</span> (배선) + <span class="highlight">Zuträger- und Ausführungsorgan</span> (전달 및 실행 기관)</li>
-                    <li><span class="highlight">wobei beide vegetative und somatische Anteile besitzen</span> = ZNS와 PNS 모두 자율신경 + 체성신경 성분을 가짐</li>
+                    <li>PNS = <span class="highlight">Verkabelung</span> (배선) + <span class="highlight">Zuträger- und
+                            Ausführungsorgan</span> (전달 및 실행 기관)</li>
+                    <li><span class="highlight">wobei beide vegetative und somatische Anteile besitzen</span> = ZNS와 PNS
+                        모두 자율신경 + 체성신경 성분을 가짐</li>
                 </ul>
             </div>
         </div>
-        
+
         <!-- Summary Comparison -->
         <div class="diagram-section">
             <div class="diagram-title">3. 용어 비교 정리표</div>
             <div class="diagram-subtitle">Terminologie-Vergleich / Terminology Comparison</div>
-            
+
             <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
                 <thead>
                     <tr style="background: linear-gradient(135deg, #2c3e50, #34495e); color: white;">
@@ -647,4 +651,5 @@
         </div>
     </div>
 </body>
+
 </html>
