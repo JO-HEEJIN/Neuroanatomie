@@ -1,0 +1,2298 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kapitel 1: Organisation des Nervensystems - 신경계의 조직</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #f093fb;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--light);
+            color: #333;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        .nav {
+            background: white;
+            padding: 10px;
+            overflow-x: auto;
+            white-space: nowrap;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 70px;
+            z-index: 99;
+        }
+
+        .nav a {
+            display: inline-block;
+            padding: 8px 15px;
+            margin: 0 5px;
+            background: var(--light);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Main Content */
+        .container {
+            padding: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Section */
+        .section {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-header h2 {
+            font-size: 1.1rem;
+        }
+
+        .section-header .toggle {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .section-header.collapsed .toggle {
+            transform: rotate(-90deg);
+        }
+
+        .section-content {
+            padding: 15px;
+        }
+
+        .section-content.hidden {
+            display: none;
+        }
+
+        /* Subsection */
+        .subsection {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .subsection:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .subsection-title {
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            padding-left: 10px;
+            border-left: 3px solid var(--primary);
+        }
+
+        /* Sentence Card */
+        .sentence-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--success);
+        }
+
+        .sentence-german {
+            font-size: 0.95rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .sentence-korean {
+            font-size: 0.9rem;
+            color: #555;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .sentence-english {
+            font-size: 0.85rem;
+            color: #777;
+            padding: 8px 10px;
+            background: #e8f4f8;
+            border-radius: 8px;
+        }
+
+        /* Word List */
+        .word-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .word-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .word-german {
+            font-weight: 700;
+            color: var(--primary);
+            min-width: 120px;
+            font-size: 0.85rem;
+        }
+
+        .word-meaning {
+            flex: 1;
+            font-size: 0.85rem;
+        }
+
+        .word-english {
+            color: #888;
+            font-size: 0.75rem;
+            margin-top: 3px;
+        }
+
+        /* Key Point Box */
+        .key-point {
+            background: linear-gradient(135deg, #fff3cd, #ffeeba);
+            border-left: 4px solid var(--warning);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 15px 0;
+        }
+
+        .key-point-title {
+            font-weight: 700;
+            color: #856404;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .key-point-content {
+            font-size: 0.85rem;
+            color: #856404;
+        }
+
+        /* Must Memorize */
+        .must-memorize {
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            border-left: 4px solid var(--danger);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 15px 0;
+        }
+
+        .must-memorize-title {
+            font-weight: 700;
+            color: #721c24;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+
+        th {
+            background: var(--dark);
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        /* Diagram */
+        .diagram {
+            background: #f0f4f8;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .diagram-title {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .tree {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .tree-node {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.85rem;
+            margin: 5px;
+            min-width: 100px;
+        }
+
+        .tree-node.green {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+        }
+
+        .tree-node.orange {
+            background: linear-gradient(135deg, #e67e22, #f39c12);
+        }
+
+        .tree-node.blue {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+
+        .tree-node.purple {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+        }
+
+        .tree-node.gray {
+            background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+        }
+
+        .tree-children {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .tree-connector {
+            width: 2px;
+            height: 15px;
+            background: #bdc3c7;
+        }
+
+        /* Highlight */
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .highlight-blue {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .highlight-green {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .highlight-red {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Vocab Badge */
+        .vocab-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin: 3px;
+        }
+
+        .vocab-noun {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .vocab-verb {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .vocab-adj {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        /* Accordion */
+        .accordion {
+            margin: 10px 0;
+        }
+
+        .accordion-header {
+            background: var(--light);
+            padding: 12px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .accordion-content {
+            padding: 15px;
+            display: none;
+        }
+
+        .accordion-content.show {
+            display: block;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border-left: 4px solid var(--success);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 15px 0;
+        }
+
+        .summary-title {
+            font-weight: 700;
+            color: #155724;
+            margin-bottom: 10px;
+        }
+
+        .summary-list {
+            list-style: none;
+        }
+
+        .summary-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #a3d9a5;
+            font-size: 0.85rem;
+        }
+
+        .summary-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 0.8rem;
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            display: none;
+            z-index: 1000;
+        }
+
+        .scroll-top.show {
+            display: block;
+        }
+
+        /* Info flow diagram */
+        .info-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .flow-box {
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.8rem;
+            min-width: 80px;
+        }
+
+        .flow-arrow {
+            font-size: 1.2rem;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>Neuroanatomy Basic</h1>
+        <p>Kapitel 1 - 독일어 신경해부학</p>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav">
+        <a href="#chapter1">1. Organisation</a>
+        <a href="#chapter2">2. Gliederung</a>
+        <a href="#chapter3">3. Informationsfluss</a>
+        <a href="#vocab">단어장</a>
+        <a href="#summary">요약</a>
+        <a href="#chapter-info">📍 위치</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- Chapter 1: Organisation des Nervensystems -->
+        <div class="section" id="chapter1">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>1. Organisation des Nervensystems</h2>
+                <span class="toggle">&#9660;</span>
+            </div>
+            <div class="section-content">
+
+                <!-- 문장 1 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">문장 1: 신경계의 정의</h3>
+                    <div class="sentence-card">
+                        <div class="sentence-german">"Das Nervensystem ist das komplexeste System des Körpers, das jeden
+                            Tag wohl mehr Verbindungen aufbaut als alle Telefonnetze der Welt zusammen."</div>
+                        <div class="sentence-korean">신경계는 신체에서 가장 복잡한 시스템이며, 매일 아마도 전 세계의 모든 전화망을 합친 것보다 더 많은 연결을 구축한다.
+                        </div>
+                        <div class="sentence-english">The nervous system is the most complex system of the body, which
+                            probably builds more connections every day than all telephone networks in the world
+                            combined.</div>
+                    </div>
+
+                    <div class="word-list">
+                        <div class="word-item">
+                            <span class="word-german">das Nervensystem</span>
+                            <div class="word-meaning">신경계<div class="word-english">nervous system</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">komplexeste</span>
+                            <div class="word-meaning">가장 복잡한 (최상급)<div class="word-english">most complex</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">des Körpers</span>
+                            <div class="word-meaning">신체의<div class="word-english">of the body</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">jeden Tag</span>
+                            <div class="word-meaning">매일<div class="word-english">every day</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">wohl</span>
+                            <div class="word-meaning">아마도<div class="word-english">probably</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Verbindungen</span>
+                            <div class="word-meaning">연결들<div class="word-english">connections</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">aufbaut</span>
+                            <div class="word-meaning">구축하다 (aufbauen)<div class="word-english">builds up</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Telefonnetze</span>
+                            <div class="word-meaning">전화망들<div class="word-english">telephone networks</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">zusammen</span>
+                            <div class="word-meaning">합쳐서, 함께<div class="word-english">together</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 문장 2 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">문장 2: 신경계의 역할</h3>
+                    <div class="sentence-card">
+                        <div class="sentence-german">"Es ist dem gesamten Organismus übergeordnet und schafft durch
+                            seine Leistungen geordnete Verhältnisse, wo sonst nur Chaos vorherrschen würde."</div>
+                        <div class="sentence-korean">그것(신경계)은 전체 유기체의 상위에 위치하며, 그 기능을 통해 질서 있는 상태를 만들어내는데, 그렇지 않으면 오직
+                            혼돈만이 지배할 것이다.</div>
+                        <div class="sentence-english">It is superior to the entire organism and creates orderly
+                            conditions through its functions, where otherwise only chaos would prevail.</div>
+                    </div>
+
+                    <div class="word-list">
+                        <div class="word-item">
+                            <span class="word-german">übergeordnet</span>
+                            <div class="word-meaning">상위에 위치한<div class="word-english">superior</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">der Organismus</span>
+                            <div class="word-meaning">유기체<div class="word-english">organism</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">schafft</span>
+                            <div class="word-meaning">만들어내다 (schaffen)<div class="word-english">creates</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Leistungen</span>
+                            <div class="word-meaning">기능, 성과<div class="word-english">functions, performances</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">geordnete</span>
+                            <div class="word-meaning">질서 있는<div class="word-english">orderly</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Verhältnisse</span>
+                            <div class="word-meaning">상태, 조건<div class="word-english">conditions</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Chaos</span>
+                            <div class="word-meaning">혼돈<div class="word-english">chaos</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">vorherrschen</span>
+                            <div class="word-meaning">지배하다<div class="word-english">prevail</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 문장 3 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">문장 3: 신경계의 기능</h3>
+                    <div class="sentence-card">
+                        <div class="sentence-german">"So steuert das Nervensystem die Tätigkeit der Eingeweide und der
+                            Muskeln und ermöglicht die Kommunikation des Organismus mit der Umwelt, sodass dieser
+                            blitzschnell an die wechselnden Bedingungen der Außenwelt angepasst werden kann."</div>
+                        <div class="sentence-korean">따라서 신경계는 내장과 근육의 활동을 조절하고, 유기체와 환경의 소통을 가능하게 하여, 이를 통해 외부 세계의 변화하는
+                            조건에 번개처럼 빠르게 적응할 수 있게 한다.</div>
+                        <div class="sentence-english">Thus the nervous system controls the activity of the internal
+                            organs and muscles and enables the organism's communication with the environment, so that it
+                            can be adapted lightning-fast to the changing conditions of the outside world.</div>
+                    </div>
+
+                    <div class="must-memorize">
+                        <div class="must-memorize-title">필수 암기 단어</div>
+                        <div class="word-list">
+                            <div class="word-item">
+                                <span class="word-german">steuert</span>
+                                <div class="word-meaning">조절하다 (steuern)<div class="word-english">controls, regulates
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="word-item">
+                                <span class="word-german">die Tätigkeit</span>
+                                <div class="word-meaning">활동<div class="word-english">activity</div>
+                                </div>
+                            </div>
+                            <div class="word-item">
+                                <span class="word-german">die Eingeweide</span>
+                                <div class="word-meaning">내장<div class="word-english">internal organs, viscera</div>
+                                </div>
+                            </div>
+                            <div class="word-item">
+                                <span class="word-german">der Muskel(n)</span>
+                                <div class="word-meaning">근육<div class="word-english">muscle(s)</div>
+                                </div>
+                            </div>
+                            <div class="word-item">
+                                <span class="word-german">ermöglicht</span>
+                                <div class="word-meaning">가능하게 하다 (ermöglichen)<div class="word-english">enables</div>
+                                </div>
+                            </div>
+                            <div class="word-item">
+                                <span class="word-german">die Kommunikation</span>
+                                <div class="word-meaning">소통<div class="word-english">communication</div>
+                                </div>
+                            </div>
+                            <div class="word-item">
+                                <span class="word-german">die Umwelt</span>
+                                <div class="word-meaning">환경<div class="word-english">environment</div>
+                                </div>
+                            </div>
+                            <div class="word-item">
+                                <span class="word-german">blitzschnell</span>
+                                <div class="word-meaning">번개처럼 빠르게<div class="word-english">lightning-fast</div>
+                                </div>
+                            </div>
+                            <div class="word-item">
+                                <span class="word-german">wechselnden</span>
+                                <div class="word-meaning">변화하는<div class="word-english">changing</div>
+                                </div>
+                            </div>
+                            <div class="word-item">
+                                <span class="word-german">Bedingungen</span>
+                                <div class="word-meaning">조건들<div class="word-english">conditions</div>
+                                </div>
+                            </div>
+                            <div class="word-item">
+                                <span class="word-german">die Außenwelt</span>
+                                <div class="word-meaning">외부 세계<div class="word-english">external world</div>
+                                </div>
+                            </div>
+                            <div class="word-item">
+                                <span class="word-german">angepasst</span>
+                                <div class="word-meaning">적응된 (anpassen)<div class="word-english">adapted</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 문장 4 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">문장 4: 정신적 기능의 기초</h3>
+                    <div class="sentence-card">
+                        <div class="sentence-german">"darüber hinaus ist es die Grundlage sämtlicher psychischer und
+                            geistiger Fähigkeiten wie Denken und Fühlen sowie der Herausbildung der individuellen
+                            Persönlichkeit."</div>
+                        <div class="sentence-korean">그 외에도 그것(신경계)은 사고와 감정과 같은 모든 정신적이고 지적인 능력 및 개별적 성격 형성의 기초이다.</div>
+                        <div class="sentence-english">Furthermore, it is the foundation of all psychological and
+                            intellectual abilities such as thinking and feeling, as well as the formation of individual
+                            personality.</div>
+                    </div>
+
+                    <div class="word-list">
+                        <div class="word-item">
+                            <span class="word-german">darüber hinaus</span>
+                            <div class="word-meaning">그 외에도, 더 나아가<div class="word-english">moreover, furthermore</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">die Grundlage</span>
+                            <div class="word-meaning">기초, 토대<div class="word-english">foundation, basis</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">sämtlicher</span>
+                            <div class="word-meaning">모든<div class="word-english">all, entire</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">psychisch</span>
+                            <div class="word-meaning">정신적인, 심리적인<div class="word-english">psychological</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">geistig</span>
+                            <div class="word-meaning">지적인<div class="word-english">intellectual, mental</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Fähigkeiten</span>
+                            <div class="word-meaning">능력들<div class="word-english">abilities</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">das Denken</span>
+                            <div class="word-meaning">사고<div class="word-english">thinking</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">das Fühlen</span>
+                            <div class="word-meaning">감정<div class="word-english">feeling</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">die Herausbildung</span>
+                            <div class="word-meaning">형성, 발달<div class="word-english">formation, development</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">individuell</span>
+                            <div class="word-meaning">개별적인<div class="word-english">individual</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">die Persönlichkeit</span>
+                            <div class="word-meaning">성격, 인격<div class="word-english">personality</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 신경계 구성 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">문장 5: 신경계의 구성 (가장 중요!)</h3>
+                    <div class="sentence-card">
+                        <div class="sentence-german">"Aufgebaut ist das Nervensystem aus Nervengewebe, d. h. aus
+                            Nervenzellen und Gliazellen."</div>
+                        <div class="sentence-korean">신경계는 신경조직으로 구성되어 있으며, 즉 신경세포와 교세포로 이루어져 있다.</div>
+                        <div class="sentence-english">The nervous system is composed of nerve tissue, i.e., of nerve
+                            cells and glial cells.</div>
+                    </div>
+
+                    <div class="key-point">
+                        <div class="key-point-title">핵심 암기</div>
+                        <div class="key-point-content">
+                            <strong>Nervensystem = Nervengewebe = Nervenzellen + Gliazellen</strong><br>
+                            신경계 = 신경조직 = 신경세포 + 교세포
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 신경세포 구조 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">문장 6: 신경세포의 구조와 기능</h3>
+                    <div class="sentence-card">
+                        <div class="sentence-german">"Sie besitzen zahlreiche Fortsätze (Dendriten und Axone), über die
+                            sie Informationen (Erregungen, Impulse) aufnehmen, verarbeiten und weiterleiten, wobei z. T.
+                            Erregungsleitungsgeschwindigkeiten von über 400 km/h erreicht werden!"</div>
+                        <div class="sentence-korean">그것들(신경세포)은 많은 돌기(수상돌기와 축삭)를 가지고 있으며, 이를 통해 정보(흥분, 자극)를 수용하고, 처리하고,
+                            전달하는데, 부분적으로 400 km/h 이상의 흥분 전도 속도에 도달한다!</div>
+                        <div class="sentence-english">They possess numerous processes (dendrites and axons), through
+                            which they receive, process and transmit information (excitations, impulses), where
+                            conduction velocities of over 400 km/h are partially achieved!</div>
+                    </div>
+
+                    <div class="must-memorize">
+                        <div class="must-memorize-title">시험 필수 암기!</div>
+                        <div class="word-list">
+                            <div class="word-item">
+                                <span class="word-german">Fortsätze</span>
+                                <div class="word-meaning">돌기들<div class="word-english">processes</div>
+                                </div>
+                            </div>
+                            <div class="word-item">
+                                <span class="word-german">Dendriten</span>
+                                <div class="word-meaning">수상돌기<div class="word-english">dendrites</div>
+                                </div>
+                            </div>
+                            <div class="word-item">
+                                <span class="word-german">Axone</span>
+                                <div class="word-meaning">축삭<div class="word-english">axons</div>
+                                </div>
+                            </div>
+                            <div class="word-item">
+                                <span class="word-german">Erregungen</span>
+                                <div class="word-meaning">흥분, 자극<div class="word-english">excitations</div>
+                                </div>
+                            </div>
+                            <div class="word-item">
+                                <span class="word-german">Impulse</span>
+                                <div class="word-meaning">자극, 충동<div class="word-english">impulses</div>
+                                </div>
+                            </div>
+                            <div class="word-item">
+                                <span class="word-german">aufnehmen</span>
+                                <div class="word-meaning">수용하다<div class="word-english">receive</div>
+                                </div>
+                            </div>
+                            <div class="word-item">
+                                <span class="word-german">verarbeiten</span>
+                                <div class="word-meaning">처리하다<div class="word-english">process</div>
+                                </div>
+                            </div>
+                            <div class="word-item">
+                                <span class="word-german">weiterleiten</span>
+                                <div class="word-meaning">전달하다<div class="word-english">transmit</div>
+                                </div>
+                            </div>
+                            <div class="word-item">
+                                <span class="word-german">Erregungsleitungsgeschwindigkeit</span>
+                                <div class="word-meaning">흥분 전도 속도<div class="word-english">conduction velocity</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="key-point">
+                        <div class="key-point-title">숫자 암기!</div>
+                        <div class="key-point-content">
+                            <span class="highlight-red">400 km/h</span> = 흥분 전도 속도 (Erregungsleitungsgeschwindigkeit)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 내분비계 비교 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">문장 7: 내분비계와의 비교</h3>
+                    <div class="sentence-card">
+                        <div class="sentence-german">"Dadurch wirkt das Nervensystem sehr viel schneller als das zweite
+                            Steuerungssystem des Körpers, das endokrine System."</div>
+                        <div class="sentence-korean">이를 통해 신경계는 신체의 두 번째 조절 시스템인 내분비계보다 훨씬 빠르게 작동한다.</div>
+                        <div class="sentence-english">As a result, the nervous system acts much faster than the body's
+                            second control system, the endocrine system.</div>
+                    </div>
+
+                    <div class="word-list">
+                        <div class="word-item">
+                            <span class="word-german">das Steuerungssystem</span>
+                            <div class="word-meaning">조절 시스템<div class="word-english">control system</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">das endokrine System</span>
+                            <div class="word-meaning">내분비계<div class="word-english">endocrine system</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 교세포 기능 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">문장 8: 교세포의 기능</h3>
+                    <div class="sentence-card">
+                        <div class="sentence-german">"Die Gliazellen übernehmen v. a. Stütz-, Schutz-, Isolations- und
+                            Ernährungsfunktionen für die Nervenzellen."</div>
+                        <div class="sentence-korean">교세포는 특히 신경세포를 위한 지지, 보호, 절연 및 영양 공급 기능을 담당한다.</div>
+                        <div class="sentence-english">The glial cells mainly take over support, protection, insulation
+                            and nutrition functions for the nerve cells.</div>
+                    </div>
+
+                    <div class="key-point">
+                        <div class="key-point-title">교세포(Gliazellen)의 4가지 기능 - 필수 암기!</div>
+                        <div class="key-point-content">
+                            1. <span class="highlight">Stützfunktion</span> - 지지 기능 (Support)<br>
+                            2. <span class="highlight">Schutzfunktion</span> - 보호 기능 (Protection)<br>
+                            3. <span class="highlight">Isolationsfunktion</span> - 절연 기능 (Insulation)<br>
+                            4. <span class="highlight">Ernährungsfunktion</span> - 영양 공급 기능 (Nutrition)
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Chapter 2: Gliederung des Nervensystems -->
+        <div class="section" id="chapter2">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>2. Gliederung des Nervensystems</h2>
+                <span class="toggle">&#9660;</span>
+            </div>
+            <div class="section-content">
+
+                <!-- 기능적 분류 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">기능적 분류 (Der Funktion nach)</h3>
+                    <div class="sentence-card">
+                        <div class="sentence-german">"Der Funktion nach untergliedert man das Nervensystem in das
+                            vegetative (autonome, viszerale) Nervensystem und das somatische (animalische)
+                            Nervensystem."</div>
+                        <div class="sentence-korean">기능에 따라 신경계는 자율(내장) 신경계와 체성 신경계로 나뉜다.</div>
+                        <div class="sentence-english">According to function, the nervous system is subdivided into the
+                            vegetative (autonomic, visceral) nervous system and the somatic (animal) nervous system.
+                        </div>
+                    </div>
+
+                    <div class="diagram">
+                        <div class="diagram-title">기능적 분류 다이어그램</div>
+                        <div class="tree">
+                            <div class="tree-node">Nervensystem<br><small>신경계</small></div>
+                            <div class="tree-connector"></div>
+                            <div class="tree-children">
+                                <div class="tree-node blue">
+                                    Somatisches NS<br>
+                                    <small>체성신경계</small><br>
+                                    <small style="font-size:0.7rem">(animalisch)</small>
+                                </div>
+                                <div class="tree-node purple">
+                                    Vegetatives NS<br>
+                                    <small>자율신경계</small><br>
+                                    <small style="font-size:0.7rem">(autonom, viszeral)</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 자율신경계 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">자율신경계 (Vegetatives NS)</h3>
+                    <div class="sentence-card">
+                        <div class="sentence-german">"Das vegetative Nervensystem steuert meist unbewusst die Tätigkeit
+                            der Eingeweide (u.a. Innervation der glatten Muskulatur) und hält das innere Milieu
+                            konstant."</div>
+                        <div class="sentence-korean">자율신경계는 대부분 무의식적으로 내장의 활동(평활근의 신경 지배 포함)을 조절하고 내부 환경을 일정하게 유지한다.
+                        </div>
+                        <div class="sentence-english">The vegetative nervous system mostly controls the activity of the
+                            internal organs unconsciously (including innervation of smooth muscle) and keeps the
+                            internal milieu constant.</div>
+                    </div>
+
+                    <div class="key-point">
+                        <div class="key-point-title">자율신경계 핵심 키워드</div>
+                        <div class="key-point-content">
+                            <span class="highlight">unbewusst</span> (무의식적) +
+                            <span class="highlight">Eingeweide</span> (내장) +
+                            <span class="highlight">glatte Muskulatur</span> (평활근) +
+                            <span class="highlight">inneres Milieu</span> (내부 환경)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 체성신경계 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">체성신경계 (Somatisches NS)</h3>
+                    <div class="sentence-card">
+                        <div class="sentence-german">"Das somatische Nervensystem ermöglicht hingegen die Kommunikation
+                            mit der Umwelt (äußeres Milieu), da es der meist bewussten Wahrnehmung von Sinnesreizen und
+                            der willkürlichen Bewegung der Skelettmuskulatur dient."</div>
+                        <div class="sentence-korean">반면에 체성신경계는 감각 자극의 주로 의식적인 지각과 골격근의 수의적 운동에 기여하므로 환경(외부 환경)과의 소통을
+                            가능하게 한다.</div>
+                        <div class="sentence-english">The somatic nervous system, on the other hand, enables
+                            communication with the environment (external milieu), since it serves the mostly conscious
+                            perception of sensory stimuli and the voluntary movement of skeletal muscles.</div>
+                    </div>
+
+                    <div class="key-point">
+                        <div class="key-point-title">체성신경계 핵심 키워드</div>
+                        <div class="key-point-content">
+                            <span class="highlight">bewusst</span> (의식적) +
+                            <span class="highlight">Wahrnehmung</span> (지각) +
+                            <span class="highlight">Sinnesreize</span> (감각자극) +
+                            <span class="highlight">willkürlich</span> (수의적) +
+                            <span class="highlight">Skelettmuskulatur</span> (골격근)
+                        </div>
+                    </div>
+
+                    <div class="word-list">
+                        <div class="word-item">
+                            <span class="word-german">hingegen</span>
+                            <div class="word-meaning">반면에<div class="word-english">on the other hand</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">äußeres Milieu</span>
+                            <div class="word-meaning">외부 환경<div class="word-english">external milieu</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">die Wahrnehmung</span>
+                            <div class="word-meaning">지각, 인식<div class="word-english">perception</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Sinnesreize</span>
+                            <div class="word-meaning">감각 자극<div class="word-english">sensory stimuli</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">willkürlich</span>
+                            <div class="word-meaning">수의적인<div class="word-english">voluntary</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">die Skelettmuskulatur</span>
+                            <div class="word-meaning">골격근<div class="word-english">skeletal muscle</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 상호 영향 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">두 시스템의 상호작용</h3>
+                    <div class="sentence-card">
+                        <div class="sentence-german">"Beide Systeme arbeiten jedoch nicht isoliert voneinander, sondern
+                            beeinflussen sich wechselseitig."</div>
+                        <div class="sentence-korean">그러나 두 시스템은 서로 고립되어 작동하지 않고 상호적으로 영향을 미친다.</div>
+                        <div class="sentence-english">However, both systems do not work in isolation from each other,
+                            but influence each other mutually.</div>
+                    </div>
+
+                    <div class="word-list">
+                        <div class="word-item">
+                            <span class="word-german">isoliert</span>
+                            <div class="word-meaning">고립된<div class="word-english">isolated</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">voneinander</span>
+                            <div class="word-meaning">서로로부터<div class="word-english">from each other</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">beeinflussen</span>
+                            <div class="word-meaning">영향을 미치다<div class="word-english">influence</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">wechselseitig</span>
+                            <div class="word-meaning">상호적으로<div class="word-english">mutually</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 위치적 분류 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">위치적 분류 (Nach topografischen Gesichtspunkten)</h3>
+                    <div class="sentence-card">
+                        <div class="sentence-german">"Nach topografischen Gesichtspunkten kann man das Nervensystem
+                            darüber hinaus in das zentrale Nervensystem (ZNS) und das periphere Nervensystem (PNS)
+                            gliedern, wobei beide vegetative und somatische Anteile besitzen."</div>
+                        <div class="sentence-korean">위치적 관점에서 신경계는 더 나아가 중추신경계(ZNS)와 말초신경계(PNS)로 나뉠 수 있으며, 둘 다 자율신경과
+                            체성신경 성분을 가진다.</div>
+                        <div class="sentence-english">According to topographical viewpoints, the nervous system can
+                            furthermore be divided into the central nervous system (CNS) and the peripheral nervous
+                            system (PNS), where both possess vegetative and somatic components.</div>
+                    </div>
+
+                    <div class="diagram">
+                        <div class="diagram-title">위치적 분류 다이어그램</div>
+                        <div class="tree">
+                            <div class="tree-node">Nervensystem<br><small>신경계</small></div>
+                            <div class="tree-connector"></div>
+                            <div class="tree-children">
+                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                    <div class="tree-node green">ZNS<br><small>중추신경계</small></div>
+                                    <div class="tree-connector"></div>
+                                    <div class="tree-children">
+                                        <div class="tree-node gray">Gehirn<br><small>뇌</small></div>
+                                        <div class="tree-node gray">Rückenmark<br><small>척수</small></div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                    <div class="tree-node orange">PNS<br><small>말초신경계</small></div>
+                                    <div class="tree-connector"></div>
+                                    <div class="tree-children">
+                                        <div class="tree-node gray">Hirnnerven<br><small>뇌신경</small></div>
+                                        <div class="tree-node gray">Spinalnerven<br><small>척수신경</small></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="word-list">
+                        <div class="word-item">
+                            <span class="word-german">topografisch</span>
+                            <div class="word-meaning">위치적인<div class="word-english">topographical</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Gesichtspunkten</span>
+                            <div class="word-meaning">관점<div class="word-english">viewpoints</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">gliedern</span>
+                            <div class="word-meaning">나누다<div class="word-english">divide, structure</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Anteile</span>
+                            <div class="word-meaning">부분, 성분<div class="word-english">components, parts</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ZNS -->
+                <div class="subsection">
+                    <h3 class="subsection-title">중추신경계 (ZNS)</h3>
+                    <div class="sentence-card">
+                        <div class="sentence-german">"Das ZNS besteht aus Gehirn und Rückenmark und ist die
+                            Steuerzentrale, in welcher Informationen aus dem Körper selbst und der Außenwelt eintreffen
+                            und verarbeitet werden."</div>
+                        <div class="sentence-korean">ZNS는 뇌와 척수로 구성되며, 신체 자체와 외부 세계로부터의 정보가 도착하고 처리되는 조절 중추이다.</div>
+                        <div class="sentence-english">The CNS consists of brain and spinal cord and is the control
+                            center, in which information from the body itself and the external world arrives and is
+                            processed.</div>
+                    </div>
+
+                    <div class="key-point">
+                        <div class="key-point-title">ZNS 핵심</div>
+                        <div class="key-point-content">
+                            <span class="highlight">ZNS = Gehirn + Rückenmark = Steuerzentrale</span><br>
+                            중추신경계 = 뇌 + 척수 = 조절 중추
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PNS -->
+                <div class="subsection">
+                    <h3 class="subsection-title">말초신경계 (PNS)</h3>
+                    <div class="sentence-card">
+                        <div class="sentence-german">"Das PNS hingegen besteht aus allen Anteilen des Nervensystems
+                            außerhalb von Gehirn und Rückenmark."</div>
+                        <div class="sentence-korean">반면에 PNS는 뇌와 척수 바깥의 신경계의 모든 부분으로 구성된다.</div>
+                        <div class="sentence-english">The PNS, on the other hand, consists of all parts of the nervous
+                            system outside of brain and spinal cord.</div>
+                    </div>
+
+                    <div class="sentence-card">
+                        <div class="sentence-german">"Es dient der 'Verkabelung' des ZNS mit der Peripherie und fungiert
+                            damit als dessen 'Zuträger- und Ausführungsorgan'."</div>
+                        <div class="sentence-korean">그것은 ZNS와 말초의 "배선" 역할을 하며, 이로써 "전달자 및 실행 기관"으로 기능한다.</div>
+                        <div class="sentence-english">It serves as the "wiring" of the CNS with the periphery and thus
+                            functions as its "supplier and executive organ".</div>
+                    </div>
+
+                    <div class="key-point">
+                        <div class="key-point-title">PNS 핵심</div>
+                        <div class="key-point-content">
+                            <span class="highlight">PNS = Verkabelung</span> (배선)<br>
+                            <span class="highlight">= Zuträger- und Ausführungsorgan</span> (전달 및 실행 기관)
+                        </div>
+                    </div>
+
+                    <div class="word-list">
+                        <div class="word-item">
+                            <span class="word-german">außerhalb von</span>
+                            <div class="word-meaning">~의 바깥에<div class="word-english">outside of</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Verkabelung</span>
+                            <div class="word-meaning">배선<div class="word-english">wiring</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">die Peripherie</span>
+                            <div class="word-meaning">말초<div class="word-english">periphery</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">fungiert</span>
+                            <div class="word-meaning">기능하다 (fungieren)<div class="word-english">functions</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Zuträger</span>
+                            <div class="word-meaning">전달자<div class="word-english">supplier</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Ausführungsorgan</span>
+                            <div class="word-meaning">실행 기관<div class="word-english">executive organ</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 신경섬유와 신경 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">신경섬유와 신경</h3>
+                    <div class="sentence-card">
+                        <div class="sentence-german">"Seine Leitungskabel sind die aus Nervenzellfortsätzen und
+                            Gliazellen aufgebauten Nervenfasern, welche sich zu Bündeln zusammenschließen, die als
+                            Nerven bezeichnet werden."</div>
+                        <div class="sentence-korean">그것의 전도 케이블은 신경세포 돌기와 교세포로 구성된 신경섬유이며, 이들은 다발로 결합하여 신경이라고 불린다.</div>
+                        <div class="sentence-english">Its conducting cables are the nerve fibers constructed from nerve
+                            cell processes and glial cells, which join together into bundles that are designated as
+                            nerves.</div>
+                    </div>
+
+                    <div class="word-list">
+                        <div class="word-item">
+                            <span class="word-german">Leitungskabel</span>
+                            <div class="word-meaning">전도 케이블<div class="word-english">conducting cables</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Nervenzellfortsätze</span>
+                            <div class="word-meaning">신경세포 돌기<div class="word-english">nerve cell processes</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Nervenfasern</span>
+                            <div class="word-meaning">신경섬유<div class="word-english">nerve fibers</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Bündeln</span>
+                            <div class="word-meaning">다발<div class="word-english">bundles</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">zusammenschließen</span>
+                            <div class="word-meaning">결합하다<div class="word-english">join together</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">bezeichnet werden</span>
+                            <div class="word-meaning">~라고 불리다<div class="word-english">are designated</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 뇌신경과 척수신경 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">뇌신경과 척수신경</h3>
+                    <div class="sentence-card">
+                        <div class="sentence-german">"Man unterscheidet dabei die Nn. craniales (Hirnnerven), die mit
+                            dem Gehirn in Verbindung stehen, und die Nn. spinales (Spinalnerven), die mit dem Rückenmark
+                            in Verbindung stehen."</div>
+                        <div class="sentence-korean">여기서 뇌와 연결된 뇌신경(Nn. craniales)과 척수와 연결된 척수신경(Nn. spinales)을 구별한다.
+                        </div>
+                        <div class="sentence-english">One distinguishes here the cranial nerves (Nn. craniales), which
+                            are connected with the brain, and the spinal nerves (Nn. spinales), which are connected with
+                            the spinal cord.</div>
+                    </div>
+
+                    <div class="key-point">
+                        <div class="key-point-title">신경 분류</div>
+                        <div class="key-point-content">
+                            <span class="highlight">Nn. craniales (Hirnnerven)</span> = 뇌신경 (12쌍)<br>
+                            <span class="highlight">Nn. spinales (Spinalnerven)</span> = 척수신경 (31쌍)
+                        </div>
+                    </div>
+
+                    <div class="word-list">
+                        <div class="word-item">
+                            <span class="word-german">unterscheidet</span>
+                            <div class="word-meaning">구별하다 (unterscheiden)<div class="word-english">distinguishes</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Nn. (Nervi)</span>
+                            <div class="word-meaning">신경들 (복수)<div class="word-english">nerves (plural)</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">in Verbindung stehen</span>
+                            <div class="word-meaning">연결되어 있다<div class="word-english">are connected</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Chapter 3: Informationsfluss im Nervensystem -->
+        <div class="section" id="chapter3">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>3. Informationsfluss im Nervensystem</h2>
+                <span class="toggle">&#9660;</span>
+            </div>
+            <div class="section-content">
+
+                <!-- 정보 흐름 개요 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">신경계의 정보 흐름</h3>
+                    <div class="sentence-card">
+                        <div class="sentence-german">"Das Nervensystem funktioniert in Form von einfachen, aber auch
+                            sehr komplizierten Neuronenketten, den Leitungsbögen."</div>
+                        <div class="sentence-korean">신경계는 단순하지만 매우 복잡한 신경세포 사슬인 전도 경로(Leitungsbögen) 형태로 기능한다.</div>
+                        <div class="sentence-english">The nervous system functions in the form of simple but also very
+                            complicated neuron chains, the conduction arcs.</div>
+                    </div>
+
+                    <div class="info-flow">
+                        <div class="flow-box" style="background: #e3f2fd; color: #1565c0;">
+                            Rezeptor<br><small>수용기</small></div>
+                        <div class="flow-arrow">&#8594;</div>
+                        <div class="flow-box" style="background: #fff3e0; color: #ef6c00;">Afferenter
+                            Schenkel<br><small>구심로</small></div>
+                        <div class="flow-arrow">&#8594;</div>
+                        <div class="flow-box" style="background: #e8f5e9; color: #2e7d32;">ZNS<br><small>중추신경계</small>
+                        </div>
+                        <div class="flow-arrow">&#8594;</div>
+                        <div class="flow-box" style="background: #fce4ec; color: #c2185b;">Efferenter
+                            Schenkel<br><small>원심로</small></div>
+                        <div class="flow-arrow">&#8594;</div>
+                        <div class="flow-box" style="background: #f3e5f5; color: #7b1fa2;">
+                            Effektor<br><small>효과기</small></div>
+                    </div>
+
+                    <div class="word-list">
+                        <div class="word-item">
+                            <span class="word-german">Neuronenketten</span>
+                            <div class="word-meaning">신경세포 사슬<div class="word-english">neuron chains</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Leitungsbögen</span>
+                            <div class="word-meaning">전도 경로<div class="word-english">conduction arcs</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">afferenter Schenkel</span>
+                            <div class="word-meaning">구심로<div class="word-english">afferent limb</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">efferenter Schenkel</span>
+                            <div class="word-meaning">원심로<div class="word-english">efferent limb</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 수용기 분류 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">수용기 분류 (Rezeptoren)</h3>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Rezeptoren</th>
+                                    <th>Funktion (기능)</th>
+                                    <th>System</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Exterozeptoren</strong><br><small>외수용기</small></td>
+                                    <td>외부 세계 정보 전달<br><small>피부 수용기, 눈, 귀, 코, 혀</small></td>
+                                    <td>Somatosensibel<br><small>체성감각</small></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Propriozeptoren</strong><br><small>고유수용기</small></td>
+                                    <td>운동 기관 정보 전달<br><small>골지 건 기관 등</small></td>
+                                    <td>Somatosensibel<br><small>체성감각</small></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Viszerale Rezeptoren</strong><br><small>내장수용기</small></td>
+                                    <td>내부 환경/내장 정보 전달<br><small>위의 신장수용기 등</small></td>
+                                    <td>Viszerosensibel<br><small>내장감각</small></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="word-list">
+                        <div class="word-item">
+                            <span class="word-german">Exterozeptoren</span>
+                            <div class="word-meaning">외수용기<div class="word-english">exteroceptors</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Propriozeptoren</span>
+                            <div class="word-meaning">고유수용기<div class="word-english">proprioceptors</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Viszerale Rezeptoren</span>
+                            <div class="word-meaning">내장수용기<div class="word-english">visceral receptors</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Außenwelt</span>
+                            <div class="word-meaning">외부 세계<div class="word-english">external world</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">inneres Milieu</span>
+                            <div class="word-meaning">내부 환경<div class="word-english">internal milieu</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 구심로 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">구심로 (Afferenter Schenkel)</h3>
+                    <div class="sentence-card">
+                        <div class="sentence-german">"Über Rezeptoren werden Reize aus dem Körperinneren und der Umwelt
+                            aufgenommen."</div>
+                        <div class="sentence-korean">수용기를 통해 신체 내부와 환경으로부터의 자극이 수용된다.</div>
+                        <div class="sentence-english">Stimuli from inside the body and the environment are received
+                            through receptors.</div>
+                    </div>
+
+                    <div class="key-point">
+                        <div class="key-point-title">감각세포 분류</div>
+                        <div class="key-point-content">
+                            <strong>Primäre Sinneszellen</strong> (1차 감각세포)<br>
+                            - 자체 축삭(Axone) 보유<br>
+                            - 예: 통각수용기, 마이스너 소체, 후각세포<br><br>
+                            <strong>Sekundäre Sinneszellen</strong> (2차 감각세포)<br>
+                            - 자체 축삭 없음, 구심성 신경에 전달<br>
+                            - 예: 내이 유모세포, 미각세포
+                        </div>
+                    </div>
+
+                    <div class="word-list">
+                        <div class="word-item">
+                            <span class="word-german">Reize</span>
+                            <div class="word-meaning">자극들<div class="word-english">stimuli</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Körperinneren</span>
+                            <div class="word-meaning">신체 내부<div class="word-english">inside the body</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Primäre Sinneszellen</span>
+                            <div class="word-meaning">1차 감각세포<div class="word-english">primary sensory cells</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Sekundäre Sinneszellen</span>
+                            <div class="word-meaning">2차 감각세포<div class="word-english">secondary sensory cells</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Schmerzrezeptoren</span>
+                            <div class="word-meaning">통각수용기<div class="word-english">pain receptors</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Haarzellen</span>
+                            <div class="word-meaning">유모세포<div class="word-english">hair cells</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Geschmackszellen</span>
+                            <div class="word-meaning">미각세포<div class="word-english">taste cells</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 구심성 신경 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">구심성 신경 (Afferente Neurone)</h3>
+                    <div class="sentence-card">
+                        <div class="sentence-german">"Afferente Neurone (lat. afferens = zuführend) leiten die
+                            Sinneseindrücke aus den Rezeptoren über ihre Axone (afferente Nervenfasern) dem ZNS zu."
+                        </div>
+                        <div class="sentence-korean">구심성 신경(라틴어 afferens = 전달하는)은 수용기로부터의 감각 인상을 축삭(구심성 신경섬유)을 통해 ZNS로
+                            전달한다.</div>
+                        <div class="sentence-english">Afferent neurons (Latin afferens = leading to) conduct the sensory
+                            impressions from the receptors via their axons (afferent nerve fibers) to the CNS.</div>
+                    </div>
+
+                    <div class="key-point">
+                        <div class="key-point-title">구심성 신경 분류</div>
+                        <div class="key-point-content">
+                            체성신경계 구심성 = <span class="highlight">somatoafferent (somatosensibel)</span><br>
+                            자율신경계 구심성 = <span class="highlight">viszeroafferent (viszerosensibel)</span>
+                        </div>
+                    </div>
+
+                    <div class="word-list">
+                        <div class="word-item">
+                            <span class="word-german">afferent</span>
+                            <div class="word-meaning">구심성의 (ZNS로 향하는)<div class="word-english">afferent (leading to)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">zuführend</span>
+                            <div class="word-meaning">전달하는<div class="word-english">leading to</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Sinneseindrücke</span>
+                            <div class="word-meaning">감각 인상<div class="word-english">sensory impressions</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">sensibel</span>
+                            <div class="word-meaning">감각의<div class="word-english">sensory</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 개재신경 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">개재신경 (Interneurone)</h3>
+                    <div class="sentence-card">
+                        <div class="sentence-german">"Im ZNS werden die eintreffenden Informationen dann im Allgemeinen
+                            über viele Interneurone komplex verarbeitet, deren zugehörige Nervenfasern z. T. in Form von
+                            Tractus weite Strecken innerhalb des ZNS zurücklegen."</div>
+                        <div class="sentence-korean">ZNS에서 도착하는 정보는 일반적으로 많은 개재신경을 통해 복잡하게 처리되며, 그들의 신경섬유는 부분적으로
+                            신경로(Tractus) 형태로 ZNS 내에서 긴 거리를 이동한다.</div>
+                        <div class="sentence-english">In the CNS, the arriving information is then generally processed
+                            complexly through many interneurons, whose associated nerve fibers partly travel long
+                            distances within the CNS in the form of tracts.</div>
+                    </div>
+
+                    <div class="word-list">
+                        <div class="word-item">
+                            <span class="word-german">Interneurone</span>
+                            <div class="word-meaning">개재신경<div class="word-english">interneurons</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">eintreffenden</span>
+                            <div class="word-meaning">도착하는<div class="word-english">arriving</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">verarbeitet</span>
+                            <div class="word-meaning">처리된<div class="word-english">processed</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Tractus</span>
+                            <div class="word-meaning">신경로<div class="word-english">tract</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Strecken</span>
+                            <div class="word-meaning">거리<div class="word-english">distances</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">zurücklegen</span>
+                            <div class="word-meaning">이동하다<div class="word-english">cover, travel</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="key-point">
+                        <div class="key-point-title">Tractus 명명법</div>
+                        <div class="key-point-content">
+                            Tractus 이름 = <span class="highlight">기원(Ursprung)</span> + <span
+                                class="highlight">목적지(Zielort)</span><br>
+                            예: Tractus <strong>spino</strong>thalamicus = 척수(Rückenmark) → 시상(Thalamus)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 원심로 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">원심로 (Efferenter Schenkel)</h3>
+                    <div class="sentence-card">
+                        <div class="sentence-german">"Efferente Neurone (lat. efferens = wegführend) leiten die
+                            Steuerkommandos des ZNS über ihre Axone (efferente Nervenfasern) zu den Effektororganen."
+                        </div>
+                        <div class="sentence-korean">원심성 신경(라틴어 efferens = 이끌어내는)은 ZNS의 조절 명령을 축삭(원심성 신경섬유)을 통해 효과기관으로
+                            전달한다.</div>
+                        <div class="sentence-english">Efferent neurons (Latin efferens = leading away) conduct the
+                            control commands of the CNS via their axons (efferent nerve fibers) to the effector organs.
+                        </div>
+                    </div>
+
+                    <div class="key-point">
+                        <div class="key-point-title">원심성 신경 분류</div>
+                        <div class="key-point-content">
+                            체성신경계 원심성 = <span class="highlight">somatoefferent (somatomotorisch)</span> → 골격근<br>
+                            자율신경계 원심성 = <span class="highlight">viszeroefferent (viszeromotorisch)</span> → 평활근, 내장
+                        </div>
+                    </div>
+
+                    <div class="word-list">
+                        <div class="word-item">
+                            <span class="word-german">efferent</span>
+                            <div class="word-meaning">원심성의 (ZNS에서 나가는)<div class="word-english">efferent (leading away)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">wegführend</span>
+                            <div class="word-meaning">이끌어내는<div class="word-english">leading away</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Steuerkommandos</span>
+                            <div class="word-meaning">조절 명령<div class="word-english">control commands</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">Effektororgane</span>
+                            <div class="word-meaning">효과기관<div class="word-english">effector organs</div>
+                            </div>
+                        </div>
+                        <div class="word-item">
+                            <span class="word-german">motorisch</span>
+                            <div class="word-meaning">운동의<div class="word-english">motor</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 중요 참고사항 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">중요 참고사항</h3>
+                    <div class="must-memorize">
+                        <div class="must-memorize-title">Afferent vs Efferent 구별</div>
+                        <div class="key-point-content" style="color: #721c24;">
+                            <span class="highlight-red">Afferent (구심성)</span> = ZNS로 향함 = <span
+                                class="highlight-blue">"sensibel"</span> (감각)<br><br>
+                            <span class="highlight-red">Efferent (원심성)</span> = ZNS에서 나감 = <span
+                                class="highlight-green">"motorisch"</span> (운동)<br><br>
+                            <strong>단, ZNS 내에서는 이 구분이 항상 적용되지 않음!</strong><br>
+                            예: 대뇌피질 → 척수로 가는 신경은 척수에게는 "Afferenz"이지만 대뇌피질에게는 "Efferenz"
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Vocabulary Section -->
+        <div class="section" id="vocab">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>필수 단어장</h2>
+                <span class="toggle">&#9660;</span>
+            </div>
+            <div class="section-content">
+
+                <!-- 해부학 용어 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">해부학 핵심 용어</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Deutsch</th>
+                                    <th>English</th>
+                                    <th>Korean</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>das Nervensystem</td>
+                                    <td>nervous system</td>
+                                    <td>신경계</td>
+                                </tr>
+                                <tr>
+                                    <td>die Nervenzelle</td>
+                                    <td>nerve cell</td>
+                                    <td>신경세포</td>
+                                </tr>
+                                <tr>
+                                    <td>die Gliazelle</td>
+                                    <td>glial cell</td>
+                                    <td>교세포</td>
+                                </tr>
+                                <tr>
+                                    <td>das Nervengewebe</td>
+                                    <td>nerve tissue</td>
+                                    <td>신경조직</td>
+                                </tr>
+                                <tr>
+                                    <td>der Dendrit</td>
+                                    <td>dendrite</td>
+                                    <td>수상돌기</td>
+                                </tr>
+                                <tr>
+                                    <td>das Axon</td>
+                                    <td>axon</td>
+                                    <td>축삭</td>
+                                </tr>
+                                <tr>
+                                    <td>der Fortsatz</td>
+                                    <td>process</td>
+                                    <td>돌기</td>
+                                </tr>
+                                <tr>
+                                    <td>das Gehirn</td>
+                                    <td>brain</td>
+                                    <td>뇌</td>
+                                </tr>
+                                <tr>
+                                    <td>das Rückenmark</td>
+                                    <td>spinal cord</td>
+                                    <td>척수</td>
+                                </tr>
+                                <tr>
+                                    <td>die Hirnnerven</td>
+                                    <td>cranial nerves</td>
+                                    <td>뇌신경</td>
+                                </tr>
+                                <tr>
+                                    <td>die Spinalnerven</td>
+                                    <td>spinal nerves</td>
+                                    <td>척수신경</td>
+                                </tr>
+                                <tr>
+                                    <td>die Eingeweide</td>
+                                    <td>viscera</td>
+                                    <td>내장</td>
+                                </tr>
+                                <tr>
+                                    <td>der Muskel</td>
+                                    <td>muscle</td>
+                                    <td>근육</td>
+                                </tr>
+                                <tr>
+                                    <td>die Skelettmuskulatur</td>
+                                    <td>skeletal muscle</td>
+                                    <td>골격근</td>
+                                </tr>
+                                <tr>
+                                    <td>die glatte Muskulatur</td>
+                                    <td>smooth muscle</td>
+                                    <td>평활근</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 분류 용어 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">신경계 분류 용어</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Deutsch</th>
+                                    <th>English</th>
+                                    <th>Korean</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ZNS (Zentrales NS)</td>
+                                    <td>CNS</td>
+                                    <td>중추신경계</td>
+                                </tr>
+                                <tr>
+                                    <td>PNS (Peripheres NS)</td>
+                                    <td>PNS</td>
+                                    <td>말초신경계</td>
+                                </tr>
+                                <tr>
+                                    <td>Somatisches NS</td>
+                                    <td>Somatic NS</td>
+                                    <td>체성신경계</td>
+                                </tr>
+                                <tr>
+                                    <td>Vegetatives NS</td>
+                                    <td>Autonomic NS</td>
+                                    <td>자율신경계</td>
+                                </tr>
+                                <tr>
+                                    <td>Sympathikus</td>
+                                    <td>Sympathetic</td>
+                                    <td>교감신경</td>
+                                </tr>
+                                <tr>
+                                    <td>Parasympathikus</td>
+                                    <td>Parasympathetic</td>
+                                    <td>부교감신경</td>
+                                </tr>
+                                <tr>
+                                    <td>afferent</td>
+                                    <td>afferent</td>
+                                    <td>구심성</td>
+                                </tr>
+                                <tr>
+                                    <td>efferent</td>
+                                    <td>efferent</td>
+                                    <td>원심성</td>
+                                </tr>
+                                <tr>
+                                    <td>sensibel</td>
+                                    <td>sensory</td>
+                                    <td>감각의</td>
+                                </tr>
+                                <tr>
+                                    <td>motorisch</td>
+                                    <td>motor</td>
+                                    <td>운동의</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 동사 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">핵심 동사</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Deutsch</th>
+                                    <th>English</th>
+                                    <th>Korean</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>steuern</td>
+                                    <td>control</td>
+                                    <td>조절하다</td>
+                                </tr>
+                                <tr>
+                                    <td>ermöglichen</td>
+                                    <td>enable</td>
+                                    <td>가능하게 하다</td>
+                                </tr>
+                                <tr>
+                                    <td>aufnehmen</td>
+                                    <td>receive</td>
+                                    <td>수용하다</td>
+                                </tr>
+                                <tr>
+                                    <td>verarbeiten</td>
+                                    <td>process</td>
+                                    <td>처리하다</td>
+                                </tr>
+                                <tr>
+                                    <td>weiterleiten</td>
+                                    <td>transmit</td>
+                                    <td>전달하다</td>
+                                </tr>
+                                <tr>
+                                    <td>aufbauen</td>
+                                    <td>build up</td>
+                                    <td>구축하다</td>
+                                </tr>
+                                <tr>
+                                    <td>bestehen aus</td>
+                                    <td>consist of</td>
+                                    <td>~로 구성되다</td>
+                                </tr>
+                                <tr>
+                                    <td>gliedern</td>
+                                    <td>divide</td>
+                                    <td>나누다</td>
+                                </tr>
+                                <tr>
+                                    <td>unterscheiden</td>
+                                    <td>distinguish</td>
+                                    <td>구별하다</td>
+                                </tr>
+                                <tr>
+                                    <td>anpassen</td>
+                                    <td>adapt</td>
+                                    <td>적응시키다</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 형용사/부사 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">핵심 형용사/부사</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Deutsch</th>
+                                    <th>English</th>
+                                    <th>Korean</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>bewusst</td>
+                                    <td>conscious</td>
+                                    <td>의식적인</td>
+                                </tr>
+                                <tr>
+                                    <td>unbewusst</td>
+                                    <td>unconscious</td>
+                                    <td>무의식적인</td>
+                                </tr>
+                                <tr>
+                                    <td>willkürlich</td>
+                                    <td>voluntary</td>
+                                    <td>수의적인</td>
+                                </tr>
+                                <tr>
+                                    <td>unwillkürlich</td>
+                                    <td>involuntary</td>
+                                    <td>불수의적인</td>
+                                </tr>
+                                <tr>
+                                    <td>psychisch</td>
+                                    <td>psychological</td>
+                                    <td>정신적인</td>
+                                </tr>
+                                <tr>
+                                    <td>geistig</td>
+                                    <td>intellectual</td>
+                                    <td>지적인</td>
+                                </tr>
+                                <tr>
+                                    <td>komplex</td>
+                                    <td>complex</td>
+                                    <td>복잡한</td>
+                                </tr>
+                                <tr>
+                                    <td>wechselseitig</td>
+                                    <td>mutual</td>
+                                    <td>상호적인</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="section" id="summary">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>Zusammenfassung (요약)</h2>
+                <span class="toggle">&#9660;</span>
+            </div>
+            <div class="section-content">
+
+                <div class="summary-box">
+                    <div class="summary-title">교재 공식 요약 (원문 번역)</div>
+                    <ul class="summary-list">
+                        <li><strong>기능적 분류:</strong> 신경계는 자율(내장) 신경계와 체성(수의적, 동물) 신경계로 나뉜다.</li>
+                        <li><strong>위치적 분류:</strong> 뇌와 척수는 중추신경계(ZNS)를 형성하고, 말초신경계(PNS)는 대부분 뇌신경과 척수신경으로 구성된다.</li>
+                        <li><strong>구심성 신경:</strong> 구심성 신경(감각 신경)은 수용기로부터 감각 인상을 축삭을 통해 ZNS로 전달한다.</li>
+                        <li><strong>원심성 신경:</strong> 원심성 신경(운동 신경)은 ZNS의 조절 명령을 축삭을 통해 효과기관으로 전달한다.</li>
+                    </ul>
+                </div>
+
+                <div class="key-point">
+                    <div class="key-point-title">시험 핵심 공식</div>
+                    <div class="key-point-content">
+                        <strong>신경계 구성:</strong><br>
+                        Nervensystem = Nervenzellen + Gliazellen<br><br>
+
+                        <strong>기능적 분류:</strong><br>
+                        Der Funktion nach → Somatisch (의식) vs Vegetativ (무의식)<br><br>
+
+                        <strong>위치적 분류:</strong><br>
+                        Topografisch → ZNS (뇌+척수) vs PNS (신경들)<br><br>
+
+                        <strong>정보 흐름:</strong><br>
+                        Afferent (구심, 감각) → ZNS → Efferent (원심, 운동)<br><br>
+
+                        <strong>숫자:</strong><br>
+                        흥분전도속도: 400 km/h 이상
+                    </div>
+                </div>
+
+                <div class="must-memorize">
+                    <div class="must-memorize-title">절대 암기 항목</div>
+                    <div class="key-point-content" style="color: #721c24;">
+                        1. 교세포 4가지 기능: Stütz, Schutz, Isolation, Ernährung<br>
+                        2. 신경세포 돌기: Dendriten + Axone<br>
+                        3. 신경세포 기능: aufnehmen, verarbeiten, weiterleiten<br>
+                        4. ZNS = Gehirn + Rückenmark = Steuerzentrale<br>
+                        5. PNS = Verkabelung = Zuträger- und Ausführungsorgan<br>
+                        6. Afferent = sensibel / Efferent = motorisch<br>
+                        7. 수용기: Extero-, Proprio-, Viszerale Rezeptoren
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Chapter Position & Preview Section -->
+        <div class="section" id="chapter-info">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>📍 현재 파일의 위치 & 학습 로드맵</h2>
+                <span class="toggle">&#9660;</span>
+            </div>
+            <div class="section-content">
+
+                <!-- 현재 위치 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">📚 이 파일의 위치</h3>
+                    <div class="diagram">
+                        <div class="diagram-title">교재 목차 구조</div>
+                        <div
+                            style="background: white; padding: 20px; border-radius: 10px; font-family: monospace; font-size: 0.85rem; line-height: 1.8;">
+                            <div style="color: #667eea; font-weight: bold;">Allgemeiner Teil (일반 부분)</div>
+                            <div style="margin-left: 20px;">
+                                <div style="color: #764ba2; font-weight: bold;">└── ÜBERBLICK (개요)</div>
+                                <div style="margin-left: 40px;">
+                                    <div
+                                        style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 10px; border-radius: 8px; display: inline-block; font-weight: bold;">
+                                        └── 1 Organisation des Nervensystems ← 여기!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 파일 제목 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">📖 추천 제목</h3>
+                    <div class="key-point">
+                        <div class="key-point-title">독일어-한국어 혼합</div>
+                        <div class="key-point-content" style="font-size: 1.1rem;">
+                            <strong>Kapitel 1: Organisation des Nervensystems - 신경계의 조직</strong>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin: 15px 0; color: #888;">또는</div>
+                    <div class="summary-box">
+                        <div style="font-size: 1rem; text-align: center;">
+                            <strong>1. Organisation des Nervensystems 완벽 정리</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 파일 내용 매핑 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">🗂️ 이 파일에서 다룬 세부 내용</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>파일 내 섹션</th>
+                                    <th>해당 목차</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>신경계 구성</strong><br><small>(Nervenzellen + Gliazellen)</small></td>
+                                    <td>1장 내용 (2-4장 예고)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Gliederung des Nervensystems</strong><br><small>(신경계의 분류)</small></td>
+                                    <td>1장 핵심</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Informationsfluss im Nervensystem</strong><br><small>(신경계의 정보
+                                            흐름)</small></td>
+                                    <td>1장 핵심</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>단어장 & 요약</strong></td>
+                                    <td>1장 종합</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 앞으로 공부할 내용 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">🔜 앞으로 공부할 내용 미리보기</h3>
+
+                    <div style="margin-bottom: 20px;">
+                        <div
+                            style="background: linear-gradient(135deg, #27ae60, #2ecc71); color: white; padding: 12px 15px; border-radius: 8px; font-weight: bold; margin-bottom: 10px;">
+                            GRUNDBAUSTEINE (기본 구성요소)
+                        </div>
+                        <div
+                            style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #27ae60;">
+                            <div style="margin-bottom: 10px;">
+                                <span
+                                    style="background: #e8f5e9; color: #2e7d32; padding: 4px 10px; border-radius: 15px; font-weight: 600; font-size: 0.85rem;">2장</span>
+                                <strong style="margin-left: 10px;">Die Nervenzellen</strong> (신경세포)
+                                <div style="margin-left: 50px; color: #666; font-size: 0.85rem; margin-top: 5px;">
+                                    → 더 상세한 구조
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 10px;">
+                                <span
+                                    style="background: #e8f5e9; color: #2e7d32; padding: 4px 10px; border-radius: 15px; font-weight: 600; font-size: 0.85rem;">3장</span>
+                                <strong style="margin-left: 10px;">Die Synapsen</strong> (시냅스)
+                                <div style="margin-left: 50px; color: #666; font-size: 0.85rem; margin-top: 5px;">
+                                    → 신경 연결부
+                                </div>
+                            </div>
+                            <div>
+                                <span
+                                    style="background: #e8f5e9; color: #2e7d32; padding: 4px 10px; border-radius: 15px; font-weight: 600; font-size: 0.85rem;">4장</span>
+                                <strong style="margin-left: 10px;">Die Gliazellen</strong> (교세포)
+                                <div style="margin-left: 50px; color: #666; font-size: 0.85rem; margin-top: 5px;">
+                                    → 지지세포 상세
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div
+                            style="background: linear-gradient(135deg, #e67e22, #f39c12); color: white; padding: 12px 15px; border-radius: 8px; font-weight: bold; margin-bottom: 10px;">
+                            ENTWICKLUNG (발달)
+                        </div>
+                        <div
+                            style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #e67e22;">
+                            <div style="margin-bottom: 10px;">
+                                <span
+                                    style="background: #fff3e0; color: #ef6c00; padding: 4px 10px; border-radius: 15px; font-weight: 600; font-size: 0.85rem;">5장</span>
+                                <strong style="margin-left: 10px;">Ausgangsmaterial und Entwicklung des
+                                    Rückenmarks</strong>
+                                <div style="margin-left: 50px; color: #666; font-size: 0.85rem; margin-top: 5px;">
+                                    → 척수 발달
+                                </div>
+                            </div>
+                            <div>
+                                <span
+                                    style="background: #fff3e0; color: #ef6c00; padding: 4px 10px; border-radius: 15px; font-weight: 600; font-size: 0.85rem;">6장</span>
+                                <strong style="margin-left: 10px;">Entwicklung des Gehirns</strong>
+                                <div style="margin-left: 50px; color: #666; font-size: 0.85rem; margin-top: 5px;">
+                                    → 뇌 발달
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 학습 팁 -->
+                <div class="subsection">
+                    <div class="must-memorize">
+                        <div class="must-memorize-title">💡 학습 팁</div>
+                        <div class="key-point-content" style="color: #721c24;">
+                            <strong>1장은 신경계의 "큰 그림"을 제공합니다:</strong><br>
+                            • 신경계가 무엇으로 구성되어 있는지 (Nervenzellen + Gliazellen)<br>
+                            • 어떻게 분류되는지 (기능적/위치적)<br>
+                            • 어떻게 작동하는지 (정보 흐름)<br><br>
+                            <strong>2-4장에서는 1장에서 소개한 구성요소들을 더 깊이 배웁니다.</strong><br>
+                            <strong>5-6장에서는 이 모든 것이 어떻게 발달하는지 배웁니다.</strong>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>Neuroanatomy Basic Study Guide</p>
+        <p>독일어 신경해부학 학습 자료</p>
+    </div>
+
+    <!-- Scroll to top button -->
+    <button class="scroll-top" onclick="scrollToTop()" id="scrollBtn">&#8593;</button>
+
+    <script>
+        // Toggle section
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            const toggle = header.querySelector('.toggle');
+
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                header.classList.remove('collapsed');
+            } else {
+                content.classList.add('hidden');
+                header.classList.add('collapsed');
+            }
+        }
+
+        // Scroll to top
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/hide scroll button
+        window.onscroll = function () {
+            const btn = document.getElementById('scrollBtn');
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                btn.classList.add('show');
+            } else {
+                btn.classList.remove('show');
+            }
+        };
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('.nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                if (target) {
+                    const headerOffset = 120;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
